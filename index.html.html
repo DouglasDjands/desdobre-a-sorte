@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desdobre a Sorte - Inteligência em Loterias</title>
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container" id="main-container">
+
+        <!-- CABEÇALHO DA MARCA -->
+        <div class="brand-header">
+            <h1>🍀🎴 Desdobre a Sorte</h1>
+            <p class="slogan" id="brand-slogan">A sorte se desdobra em milhares de chances</p>
+        </div>
+
+        <!-- AVISO LEGAL -->
+        <div class="alerta-matematico">
+            ⚠️ <strong>Aviso Legal:</strong> Plataforma de análise matemática. Ferramenta probabilística <u>sem garantia de prêmio financeiro</u>.
+        </div>
+        
+        <!-- ETAPA 1: LOGIN -->
+        <div id="box-login">
+            <div class="header">
+                <p>Acesse sua área restrita ou continue gratuitamente</p>
+            </div>
+
+            <form onsubmit="realizarLogin(event)">
+                <div class="form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-senha">Senha</label>
+                    <input type="password" id="login-senha" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Entrar como Assinante VIP</button>
+            </form>
+
+            <button onclick="acessarModoGratuito()" class="btn-submit btn-secondary" style="margin-top: 8px;">
+                Entrar no Modo Gratuito
+            </button>
+
+            <div class="footer-links">
+                Ainda não tem acesso? <a href="#" onclick="alternarTela('cadastro')">Assinar Plano VIP (R$ 29,90/mês)</a>
+            </div>
+        </div>
+
+        <!-- ETAPA 2: CADASTRO -->
+        <div id="box-cadastro" class="oculto">
+            <div class="header">
+                <p>Preencha os dados para liberar o catálogo completo de Fechamentos VIP</p>
+            </div>
+
+            <div class="plano-box">
+                <span style="font-size: 11px; color: var(--texto-suave);">Plano Acesso Total VIP</span>
+                <div class="plano-preco">R$ 29,90 <span style="font-size: 11px; font-weight: normal;">/mês</span></div>
+            </div>
+
+            <form onsubmit="mostrarPagamentoPix(event)">
+                <div class="form-group">
+                    <label for="cad-nome">Nome Completo</label>
+                    <input type="text" id="cad-nome" placeholder="Seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cad-email">E-mail de Acesso</label>
+                    <input type="email" id="cad-email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cad-senha">Crie uma Senha</label>
+                    <input type="password" id="cad-senha" placeholder="Sua senha secreta" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Ir para Pagamento via PIX</button>
+            </form>
+
+            <div class="footer-links">
+                Já é assinante? <a href="#" onclick="alternarTela('login')">Fazer Login</a>
+            </div>
+        </div>
+
+        <!-- ETAPA 3: PAGAMENTO PIX -->
+        <div id="box-pagamento" class="oculto">
+            <div class="header">
+                <p>Realize o PIX para liberar seu acesso VIP imediatamente</p>
+            </div>
+
+            <div class="pix-container">
+                <p style="font-size: 11px; color: var(--texto-suave);">Chave PIX (E-mail do Administrador):</p>
+                <div class="pix-code" id="chave-pix">seuemail@exemplo.com</div>
+                <button class="btn-pix" onclick="copiarPix()">Copiar Chave PIX</button>
+            </div>
+
+            <p style="font-size: 10px; color: var(--texto-suave); margin-top: 10px; text-align: center;">
+                Após o pagamento, clique no botão abaixo para liberar sua área VIP.
+            </p>
+
+            <button class="btn-submit" style="margin-top: 10px;" onclick="liberarAcessoVIP()">
+                Já fiz o pagamento! Acessar Área VIP
+            </button>
+        </div>
+
+        <!-- ETAPA 4: GERADOR E CENTRAL DE FERRAMENTAS COMPLETA -->
+        <div id="box-gerador" class="oculto">
+            
+            <!-- BARRA DE STATUS DO USUÁRIO COM NAVEGAÇÃO COMPLETA DE CONTA -->
+            <div class="user-status-bar">
+                <div class="user-info-summary">
+                    <span>Conta: <strong id="lbl-plano-usuario" class="badge-user-plan free">GRATUITO</strong></span>
+                    <span id="lbl-nome-header" class="user-name-header"></span>
+                </div>
+                <div class="user-actions">
+                    <button id="btn-upgrade-top" onclick="alternarTela('cadastro')" class="btn-vip-top">
+                        ⭐ Virar VIP
+                    </button>
+                    <button onclick="abrirModalPerfil()" class="btn-perfil-top" title="Minha Conta / Perfil">
+                        👤 Perfil & Assinatura
+                    </button>
+                    <button onclick="fazerLogout()" class="btn-sair-top" title="Sair da Conta">
+                        🚪 Sair
+                    </button>
+                </div>
+            </div>
+
+            <!-- MENU MULTI-LOTERIAS (8 MODALIDADES) -->
+            <div class="nav-abas">
+                <button class="aba-btn aba-lotofacil ativa" id="tab-lotofacil" onclick="trocarModalidade('lotofacil')">🌸 Lotofácil</button>
+                <button class="aba-btn aba-megasena" id="tab-megasena" onclick="trocarModalidade('megasena')">🍀 Mega-Sena</button>
+                <button class="aba-btn aba-quina" id="tab-quina" onclick="trocarModalidade('quina')">🔷 Quina</button>
+                <button class="aba-btn aba-timemania" id="tab-timemania" onclick="trocarModalidade('timemania')">🟡 Timemania</button>
+                <button class="aba-btn aba-duplasena" id="tab-duplasena" onclick="trocarModalidade('duplasena')">🔴 Dupla Sena</button>
+                <button class="aba-btn aba-lotomania" id="tab-lotomania" onclick="trocarModalidade('lotomania')">🟠 Lotomania</button>
+                <button class="aba-btn aba-maismilionaria" id="tab-maismilionaria" onclick="trocarModalidade('maismilionaria')">🌐 +Milionária</button>
+                <button class="aba-btn aba-diadesorte" id="tab-diadesorte" onclick="trocarModalidade('diadesorte')">☀️ Dia de Sorte</button>
+            </div>
+
+            <div class="header">
+                <div class="badge-api" id="badge-ultimo-concurso">🌐 API: Carregando último concurso...</div>
+            </div>
+
+            <div class="menu-ferramentas" id="menu-botoes-loto">
+                <button class="btn-menu-ferramenta" onclick="ativarFerramenta('estatisticas', this)">Estatísticas</button>
+                <button class="btn-menu-ferramenta ativo" onclick="ativarFerramenta('desdobramentos', this)">Fechamentos / Desdobramentos</button>
+                <button class="btn-menu-ferramenta" onclick="ativarFerramenta('sorteos', this)">Sorteios Anteriores</button>
+            </div>
+
+            <!-- ESTATÍSTICAS -->
+            <div id="secao-estatisticas" class="painel-conteudo-extra oculto">
+                <h3 style="font-size: 14px; margin-bottom: 6px;">Estatísticas e Frequência Histórica</h3>
+                <div id="conteudo-estatisticas-api">
+                    <p style="font-size: 12px; color: var(--texto-suave);">Calculando frequências via API...</p>
+                </div>
+            </div>
+
+            <!-- ÚLTIMOS SORTEIOS -->
+            <div id="secao-sorteos" class="painel-conteudo-extra oculto">
+                <h3 style="font-size: 14px; margin-bottom: 6px;">Consulta de Sorteios Oficiais</h3>
+                
+                <div class="busca-concurso-box">
+                    <input type="number" id="input-busca-concurso" placeholder="Ex: 3000">
+                    <button onclick="buscarConcursoEspecifico()">Buscar</button>
+                </div>
+
+                <div class="navegacao-concursos">
+                    <button class="btn-nav-seta" id="btn-concurso-anterior" onclick="navegarConcurso(-1)">◀ Concurso Anterior</button>
+                    <button class="btn-nav-seta" id="btn-concurso-proximo" onclick="navegarConcurso(1)">Concurso Seguinte ▶</button>
+                </div>
+
+                <div id="conteudo-sorteos-api" style="font-size: 12px; line-height: 1.5;">
+                    Carregando dados dos sorteios...
+                </div>
+            </div>
+
+            <!-- SEÇÃO PRINCIPAL: TABELAS DE FECHAMENTO -->
+            <div id="secao-desdobramentos">
+                
+                <div id="container-tabelas-garantia"></div>
+
+                <div class="painel-status">
+                    <span>Estratégia Escolhida: <strong id="lbl-estrategia-nome" style="color: var(--cor-tema);">Selecione na tabela</strong></span>
+                    <span id="contador-dezenas">0 / 0</span>
+                </div>
+
+                <!-- VOLANTE -->
+                <div class="cartela grid-lotofacil" id="volante"></div>
+
+                <div class="acoes-grid">
+                    <button class="btn btn-limpar" onclick="limparSelecao()">Limpar</button>
+                    <button class="btn btn-aleatorio" onclick="selecionarNumerosAleatorios()">🎲 Surpresinha</button>
+                    <button class="btn btn-gerar" onclick="gerarFechamento()">Gerar Jogos</button>
+                </div>
+            </div>
+
+            <!-- RESULTADOS -->
+            <div id="area-resultados" class="area-resultados oculto">
+                <div class="resultados-header">
+                    <h3 style="font-size: 13px;">Jogos Gerados (<span id="qtd-jogos-gerados">0</span>)</h3>
+                    
+                    <div class="export-btns">
+                        <button class="btn-export" onclick="copiarTodosJogos()">📋 Copiar</button>
+                        <button class="btn-export" onclick="exportarTXT()">📄 TXT</button>
+                        <button class="btn-export" onclick="imprimirJogos()">🖨️ PDF</button>
+                    </div>
+                </div>
+
+                <div class="lista-jogos" id="lista-jogos"></div>
+
+                <!-- AUDITORIA HISTÓRICA -->
+                <div class="painel-historico">
+                    <button class="btn-api-historico" id="btn-buscar-api" onclick="auditarHistoricoAPI()">
+                        🔍 Auditá-lo em Todos os Sorteios Anteriores (API)
+                    </button>
+
+                    <div id="resultado-auditoria-api" class="oculto" style="margin-top: 10px;">
+                        <div id="status-inedito-box" class="status-inedito"></div>
+                        <div class="resumo-conferencia" id="grid-auditoria-faixas"></div>
+                        
+                        <div id="caixa-concursos-detalhados" class="caixa-detalhes-concursos oculto"></div>
+                    </div>
+                </div>
+
+                <div class="box-conferidor">
+                    <h4>Conferir Concurso Específico</h4>
+                    <p id="dica-conferidor">Digite ou cole as dezenas para conferir pontuação imediata:</p>
+                    
+                    <input type="text" class="input-conferir" id="input-resultado" placeholder="Ex: 01 02 03...">
+                    <button class="btn-submit" style="padding: 6px; font-size: 12px;" onclick="conferirResultadoManualmente()">Conferir Agora</button>
+
+                    <div id="resumo-conferencia" class="resumo-conferencia oculto">
+                        <div class="stat-card">
+                            <span>Premiados</span>
+                            <strong id="stat-premiados">0 / 0</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>Máx. Pontos</span>
+                            <strong id="stat-max-pontos">0 Pts</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>Custo Total</span>
+                            <strong id="stat-custo">R$ 0,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DE GESTÃO DO PERFIL E ASSINATURA -->
+    <div id="modal-perfil" class="modal-overlay oculto">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>⚙️ Gestão de Perfil & Assinatura</h3>
+                <button class="btn-fechar-modal" onclick="fecharModalPerfil()">&times;</button>
+            </div>
+
+            <!-- ABAS DO MODAL -->
+            <div class="modal-nav-tabs">
+                <button class="tab-modal-btn ativa" id="tab-m-perfil" onclick="alternarAbaModal('dados')">👤 Meus Dados</button>
+                <button class="tab-modal-btn" id="tab-m-assinatura" onclick="alternarAbaModal('assinatura')">💳 Minha Assinatura</button>
+                <button class="tab-modal-btn" id="tab-m-notificacoes" onclick="alternarAbaModal('preferencias')">🔔 Configurações</button>
+            </div>
+
+            <div class="modal-body">
+                <!-- ABA 1: DADOS PESSOAIS -->
+                <div id="sub-aba-dados" class="sub-aba-content">
+                    <form onsubmit="salvarPerfilUsuario(event)">
+                        <div class="form-group">
+                            <label for="prof-nome">Nome Completo</label>
+                            <input type="text" id="prof-nome" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prof-email">E-mail Cadastrado</label>
+                            <input type="email" id="prof-email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prof-senha-nova">Nova Senha (deixe em branco para não alterar)</label>
+                            <input type="password" id="prof-senha-nova" placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn-submit" style="margin-top: 10px;">Salvar Alterações</button>
+                    </form>
+                </div>
+
+                <!-- ABA 2: STATUS DA ASSINATURA E CANCELAMENTO -->
+                <div id="sub-aba-assinatura" class="sub-aba-content oculto">
+                    <div class="card-status-assinatura">
+                        <div class="status-row">
+                            <span>Status da Assinatura:</span>
+                            <strong id="modal-lbl-status" class="badge-user-plan free">GRATUITO</strong>
+                        </div>
+                        <div class="status-row">
+                            <span>Plano Atual:</span>
+                            <strong id="modal-lbl-plano-nome">Modo Gratuito (Limitado)</strong>
+                        </div>
+                        <div class="status-row">
+                            <span>Renovação/Vencimento:</span>
+                            <strong id="modal-lbl-vencimento">N/A</strong>
+                        </div>
+                    </div>
+
+                    <div id="box-vip-gerenciamento" class="oculto" style="margin-top: 15px;">
+                        <h4 style="font-size: 12px; margin-bottom: 6px; color: var(--texto-forte);">Opções de Assinatura VIP:</h4>
+                        <button onclick="solicitarCancelamento()" class="btn-danger-light">
+                            🚫 Cancelar Minha Assinatura VIP
+                        </button>
+                        <p style="font-size: 10px; color: var(--texto-suave); margin-top: 6px; line-height: 1.3;">
+                            Ao cancelar, você continuará com acesso VIP até o fim do período já pago. Sem multas ou taxas adicionais.
+                        </p>
+                    </div>
+
+                    <div id="box-free-gerenciamento" style="margin-top: 15px; text-align: center;">
+                        <p style="font-size: 11px; color: var(--texto-suave); margin-bottom: 10px;">
+                            Sua conta está no plano gratuito. Faça upgrade para desbloquear todos os fechamentos de 16, 17, 18 a 22 dezenas!
+                        </p>
+                        <button onclick="fecharModalPerfil(); alternarTela('cadastro');" class="btn-submit">
+                            ⭐ Assinar VIP por R$ 29,90/mês
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ABA 3: CONFIGURAÇÕES E PREFERÊNCIAS -->
+                <div id="sub-aba-preferencias" class="sub-aba-content oculto">
+                    <div class="pref-item">
+                        <label class="switch-label">
+                            <input type="checkbox" id="pref-notif-email" checked onchange="salvarPreferencias()">
+                            <span class="slider round"></span>
+                            Receber resumo dos resultados por e-mail
+                        </label>
+                    </div>
+                    <div class="pref-item">
+                        <label class="switch-label">
+                            <input type="checkbox" id="pref-som-alertas" checked onchange="salvarPreferencias()">
+                            <span class="slider round"></span>
+                            Sons de confirmação ao gerar fechamentos
+                        </label>
+                    </div>
+                    <div class="pref-item">
+                        <label class="switch-label">
+                            <input type="checkbox" id="pref-salvar-historico" checked onchange="salvarPreferencias()">
+                            <span class="slider round"></span>
+                            Lembrar última modalidade de loteria selecionada
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Externo -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,780 @@
+/* ESTILOS GERAIS DA PLATAFORMA DESDOBRE A SORTE */
+:root {
+    --bg-principal: #f8fafc;
+    --card-bg: #ffffff;
+    --texto-forte: #1e293b;
+    --texto-suave: #64748b;
+    --borda: #cbd5e1;
+    
+    /* Cores Oficiais das Loterias Caixa */
+    --cor-lotofacil: #930089;
+    --cor-lotofacil-hover: #6e0067;
+    --cor-megasena: #209869;
+    --cor-megasena-hover: #17724f;
+    --cor-quina: #260085;
+    --cor-quina-hover: #1a005c;
+    --cor-timemania: #fff600;
+    --cor-timemania-hover: #d1ca00;
+    --cor-duplasena: #a61325;
+    --cor-duplasena-hover: #780d1a;
+    --cor-lotomania: #f78b00;
+    --cor-lotomania-hover: #c46e00;
+    --cor-maismilionaria: #1b355a;
+    --cor-maismilionaria-hover: #102138;
+    --cor-diadesorte: #cb8326;
+    --cor-diadesorte-hover: #9c631b;
+
+    --cor-tema: var(--cor-lotofacil);
+    --cor-tema-hover: var(--cor-lotofacil-hover);
+    --cor-texto-aba: #ffffff;
+    
+    --destaque-pix: #0284c7;
+    --destaque-suave: #f1f5f9;
+    --foco: #94a3b8;
+    --sucesso: #16a34a;
+    --alerta-vip: #d97706;
+    --erro-cancelar: #dc2626;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-forte);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px 10px;
+    position: relative;
+}
+
+.container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 420px;
+    padding: 20px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: max-width 0.3s ease;
+}
+
+.container.largura-gerador {
+    max-width: 820px;
+}
+
+.brand-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.brand-header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--texto-forte);
+    letter-spacing: -0.5px;
+}
+
+.brand-header p.slogan {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cor-tema);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.alerta-matematico {
+    background-color: #fffbebf5;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.header p {
+    font-size: 12px;
+    color: var(--texto-suave);
+}
+
+.form-group {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--texto-forte);
+    margin-bottom: 4px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px 11px;
+    font-size: 13px;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: var(--cor-tema);
+}
+
+.plano-box {
+    background: #f1f5f9;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.plano-preco {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--cor-tema);
+    color: var(--cor-texto-aba);
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--cor-tema-hover);
+}
+
+.btn-secondary {
+    background: #64748b !important;
+}
+
+.btn-secondary:hover {
+    background: #475569 !important;
+}
+
+.pix-container {
+    text-align: center;
+    background-color: #f8fafc;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+.pix-code {
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 11px;
+    background: #e2e8f0;
+    padding: 6px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.btn-pix {
+    background-color: var(--destaque-pix);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.footer-links {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--texto-suave);
+}
+
+.footer-links a {
+    color: var(--texto-forte);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* BARRA SUPERIOR DO USUÁRIO */
+.user-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f5f9;
+    border: 1px solid var(--borda);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.user-info-summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-name-header {
+    font-weight: 600;
+    color: var(--texto-forte);
+}
+
+.badge-user-plan {
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.badge-user-plan.free { background: #e2e8f0; color: #475569; }
+.badge-user-plan.vip { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-vip-top {
+    font-size: 10px;
+    padding: 4px 8px;
+    background: var(--alerta-vip);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-perfil-top {
+    font-size: 10px;
+    padding: 4px 8px;
+    background: #ffffff;
+    color: var(--texto-forte);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-perfil-top:hover {
+    background: #f8fafc;
+}
+
+.btn-sair-top {
+    font-size: 10px;
+    padding: 4px 8px;
+    background: transparent;
+    color: var(--texto-suave);
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-sair-top:hover {
+    color: var(--erro-cancelar);
+    border-color: var(--erro-cancelar);
+}
+
+/* NAVEGAÇÃO MULTI-LOTERIAS */
+.nav-abas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--borda);
+    padding-bottom: 8px;
+}
+
+.aba-btn {
+    padding: 6px 4px;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    background: #f1f5f9;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: center;
+    color: var(--texto-suave);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.aba-btn.ativa { color: #ffffff !important; }
+
+.aba-btn.aba-lotofacil.ativa { background: var(--cor-lotofacil); border-color: var(--cor-lotofacil); }
+.aba-btn.aba-megasena.ativa { background: var(--cor-megasena); border-color: var(--cor-megasena); }
+.aba-btn.aba-quina.ativa { background: var(--cor-quina); border-color: var(--cor-quina); }
+.aba-btn.aba-timemania.ativa { background: var(--cor-timemania); border-color: var(--cor-timemania); color: #000 !important; }
+.aba-btn.aba-duplasena.ativa { background: var(--cor-duplasena); border-color: var(--cor-duplasena); }
+.aba-btn.aba-lotomania.ativa { background: var(--cor-lotomania); border-color: var(--cor-lotomania); }
+.aba-btn.aba-maismilionaria.ativa { background: var(--cor-maismilionaria); border-color: var(--cor-maismilionaria); }
+.aba-btn.aba-diadesorte.ativa { background: var(--cor-diadesorte); border-color: var(--cor-diadesorte); }
+
+.badge-api {
+    display: inline-block;
+    background: #e2e8f0;
+    color: var(--texto-forte);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.menu-ferramentas {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.btn-menu-ferramenta {
+    width: 100%;
+    max-width: 380px;
+    padding: 9px;
+    background: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cor-tema);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.btn-menu-ferramenta.ativo { background: var(--cor-tema); color: var(--cor-texto-aba); border-color: var(--cor-tema); }
+
+/* TABELAS DE FECHAMENTO */
+.grupo-garantia {
+    margin-bottom: 16px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.titulo-garantia {
+    background-color: var(--cor-tema);
+    color: var(--cor-texto-aba);
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tabela-fechamentos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.tabela-fechamentos th, .tabela-fechamentos td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--borda);
+    text-align: center;
+}
+
+.tabela-fechamentos th {
+    background: #f1f5f9;
+    color: var(--texto-forte);
+    font-weight: 600;
+}
+
+.tabela-fechamentos tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-fechamentos tr:hover {
+    background-color: #f8fafc;
+}
+
+.tabela-fechamentos tr.ativa {
+    background-color: #f1f5f9;
+    font-weight: bold;
+}
+
+.btn-selecionar-matriz {
+    padding: 4px 10px;
+    background: var(--cor-tema);
+    color: var(--cor-texto-aba);
+    border: none;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn-selecionar-matriz:hover {
+    opacity: 0.9;
+}
+
+.btn-selecionar-matriz.vip-btn {
+    background: var(--alerta-vip);
+    color: white !important;
+}
+
+.tag-vip-inline {
+    background: var(--alerta-vip);
+    color: white;
+    font-size: 9px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.painel-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--borda);
+}
+
+/* VOLANTE */
+.cartela {
+    display: grid;
+    gap: 4px;
+    margin-bottom: 15px;
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 4px;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+}
+
+.cartela.grid-lotofacil { grid-template-columns: repeat(5, 1fr); }
+.cartela.grid-megasena { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-quina { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-timemania { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-duplasena { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-lotomania { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-maismilionaria { grid-template-columns: repeat(10, 1fr); }
+.cartela.grid-diadesorte { grid-template-columns: repeat(7, 1fr); }
+
+.numero {
+    height: 30px;
+    background-color: #ffffff;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 11px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.numero.selecionado {
+    background-color: var(--cor-tema);
+    color: var(--cor-texto-aba);
+    border-color: var(--cor-tema);
+}
+
+.acoes-grid {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 9px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-gerar { flex: 2; background-color: var(--cor-tema); color: var(--cor-texto-aba); }
+.btn-aleatorio { flex: 1.2; background-color: #0284c7; color: #ffffff; }
+.btn-limpar { flex: 1; background-color: transparent; border: 1px solid var(--borda); color: var(--texto-suave); }
+
+/* RESULTADOS */
+.area-resultados { border-top: 1px solid var(--borda); padding-top: 12px; }
+.resultados-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+.export-btns { display: flex; gap: 4px; }
+
+.btn-export {
+    background-color: var(--destaque-suave);
+    border: 1px solid var(--borda);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.lista-jogos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.jogo-item {
+    background-color: var(--destaque-suave);
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--borda);
+}
+
+.badge-acertos { font-size: 10px; font-weight: bold; padding: 2px 5px; border-radius: 3px; background: #cbd5e1; }
+.badge-acertos.premiado { background: var(--sucesso); color: white; }
+
+.box-conferidor { background: #f1f5f9; border: 1px solid var(--borda); border-radius: 6px; padding: 10px; margin-top: 10px; }
+.input-conferir { width: 100%; padding: 7px; font-size: 12px; border: 1px solid var(--borda); border-radius: 4px; margin-bottom: 8px; font-family: monospace; }
+
+.resumo-conferencia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 8px; text-align: center; }
+.stat-card { background: white; padding: 6px; border-radius: 4px; border: 1px solid var(--borda); }
+.stat-card span { display: block; font-size: 9px; color: var(--texto-suave); }
+.stat-card strong { font-size: 12px; color: var(--texto-forte); }
+
+.busca-concurso-box { display: flex; gap: 6px; margin-bottom: 12px; }
+.busca-concurso-box input { flex: 1; padding: 7px 10px; font-size: 12px; border: 1px solid var(--borda); border-radius: 6px; }
+.busca-concurso-box button { padding: 7px 14px; background: var(--cor-tema); color: var(--cor-texto-aba); border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+
+.navegacao-concursos { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; }
+.btn-nav-seta { background: #f1f5f9; border: 1px solid var(--borda); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+
+.bloco-estatisticas-rapidas { background: #e2e8f0; border-radius: 8px; padding: 8px 12px; margin: 10px 0; font-size: 12px; line-height: 1.6; }
+.tabela-ganhadores { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px; }
+.tabela-ganhadores th, .tabela-ganhadores td { border: 1px solid var(--borda); padding: 6px 8px; text-align: left; }
+.tabela-ganhadores th { background-color: #f1f5f9; }
+
+.painel-historico { background: #ffffff; border: 1px solid var(--borda); border-radius: 6px; padding: 10px; margin-top: 10px; }
+.btn-api-historico { width: 100%; padding: 8px; background: #0f172a; color: white; border: none; border-radius: 4px; font-size: 11px; font-weight: 600; cursor: pointer; }
+
+.status-inedito { font-size: 11px; font-weight: 600; padding: 6px; border-radius: 4px; text-align: center; margin-top: 8px; }
+.status-inedito.inedito { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.status-inedito.premiado { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+
+.caixa-detalhes-concursos {
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 11px;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.caixa-detalhes-concursos h5 {
+    font-size: 11px;
+    color: var(--texto-forte);
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--borda);
+    padding-bottom: 4px;
+}
+
+.item-concurso-premiado {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.item-concurso-premiado:last-child {
+    border-bottom: none;
+}
+
+.painel-conteudo-extra { background: #ffffff; border: 1px solid var(--borda); border-radius: 8px; padding: 12px; margin-bottom: 15px; }
+.grid-estatisticas-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 8px; }
+.card-estatistica { background: #f8fafc; border: 1px solid var(--borda); border-radius: 6px; padding: 8px; }
+.card-estatistica h5 { font-size: 11px; color: var(--texto-suave); margin-bottom: 4px; }
+.card-estatistica .dezenas-destaque { font-family: monospace; font-weight: bold; font-size: 12px; color: var(--cor-tema); }
+
+/* ESTILOS DO MODAL DE PERFIL & ASSINATURA */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 15px;
+}
+
+.modal-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    border: 1px solid var(--borda);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    animation: fadeInModal 0.25s ease-out;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    background: #f8fafc;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--borda);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--texto-forte);
+}
+
+.btn-fechar-modal {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: var(--texto-suave);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-nav-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--borda);
+    background: #f1f5f9;
+}
+
+.tab-modal-btn {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--texto-suave);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-modal-btn.ativa {
+    color: var(--cor-tema);
+    background: #ffffff;
+    border-bottom-color: var(--cor-tema);
+}
+
+.modal-body {
+    padding: 16px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.card-status-assinatura {
+    background: #f8fafc;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    padding: 4px 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.status-row:last-child {
+    border-bottom: none;
+}
+
+.btn-danger-light {
+    width: 100%;
+    padding: 9px;
+    background: #fef2f2;
+    color: var(--erro-cancelar);
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-danger-light:hover {
+    background: #fee2e2;
+}
+
+/* TOGGLES/SWITCHES */
+.pref-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.switch-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--texto-forte);
+    cursor: pointer;
+}
+
+.oculto { display: none !important; }
+
+@media print {
+    body { background: white; padding: 0; }
+    .container { border: none; box-shadow: none; max-width: 100%; margin-top: 0; }
+    .brand-header, .alerta-matematico, .nav-abas, .menu-ferramentas, .grupo-garantia, .painel-status, .cartela, .acoes-grid, .export-btns, .box-conferidor, .painel-historico, .user-status-bar, .modal-overlay { display: none !important; }
+    .area-resultados { border: none; padding: 0; }
+    .lista-jogos { max-height: none; overflow: visible; }
+}
